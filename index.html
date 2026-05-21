@@ -1,33 +1,48 @@
 <!DOCTYPE html>
+
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<head><script>
-function fc1(){
-var m=Number(document.f1.tx1.value);
-var p1="";
-const t1 = document.getElementById("d1");
-for(var c=1;c<m;c++){var j=0;while(j<5)
-{var x=Math.floor(Math.random()*19)-9;var y=Math.floor(Math.random()*19)-9;
-var a=x+y;if((x<0)||(a<0)){j++;}
-var b=Math.floor(Math.random()*1.2);if((x<0)&&(a<0)&&(b==0)){var r=x;x=y;y=r;}}
-if(y<0){
-p1+= " " + (`(${c}) ${x} ${y} = ${a}<br>`);
-console.log(`(${c}) ${x} ${y} = ${a}\n`);
-}else{
-p1+= " "+(`(${c}) ${x} +${y} = ${a}<br>`);
-console.log(`(${c}) ${x} +${y} = ${a}\n`);
-}}
+<script>
+function exe(){var a;var x;var d;
+var y=Number(document.f1.tx1.value);
+var p1="";const t1 = document.getElementById("d1");
+if(y<0){y=-y;}y=Math.floor(y);if(y==0){y=1;}
+var a=y;var s=1;var n=1;console.log(`${a} =`);
+p1+= " "+(`${a} =`);var x=2;div();x++;div();
+x+=2;div();x+=2;div();while(x<Math.sqrt(a+1)){prime();x+=4;prime();x+=2;prime();
+x+=4;prime();x+=2;prime();x+=4;prime();x+=6;prime();x+=2;prime();x+=6;}
+if(a>1){if(a==y){console.log(`[PRIME]`);p1+= " "+(`[素数]`);
+}else{console.log(`(${a}^1)`);p1+= " "+(`(${a}^1)`);}s*=a+1;n*=2;}
+var q=s/n;var r=s/y;console.log(`<br> [DIV.] SUM : ${s}  No. : ${n}  Ave. : ${q}  Rt. : ${r}<br><br>`);
+p1+= " "+(`<br> [約数]<br> 総和 : ${s}<br>  個数 : ${n}<br>  平均 : ${q}<br>  比率 : ${r}<br><br>`);
 t1.innerHTML =p1;
+
+function prime(){var c=7;var w=0;while(c<Math.sqrt(x+1))
+{if((x%c)*(x%(c+4))*(x%(c+6))*(x%(c+10))*(x%(c+12))*(x%(c+16))*(x%(c+22))*(x%(c+24))==0)
+{w=1;}if(w==1){c=x;}else{c+=30;}}if(w==0){div();}}
+function div(){var d=0;p=x;while(a%x==0){a/=x;d++;p*=x;}
+if(d>0){console.log(`(${x}^${d}) `);p1+= " "+(`(${x}^${d}) `);
+p--;p/=(x-1);s*=p;n*=d+1;}}
+
 }
-</script></head>
+
+
+
+</script>
+
+
+</head>
+
 <body>
+ <p>素因数分解・約数分析</p>
 <form name="f1" action="#">
-<input type="text" name="tx1" value="">
-<input type="button" value="GO" onclick="fc1()">
+<input type="text" name="tx1" value="30">
+<input type="button" value="分解" onclick="exe()">
 </form>
 <div id="d1"></div>
 </body>
-
 
 </html>
